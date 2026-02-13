@@ -11,10 +11,10 @@ async function seedDatabase() {
         
         // 1. Création des utilisateurs
         const users = await User.bulkCreate([
-            { phone: '690123456', name: 'Alice', rating: 4.9, totalRides: 24 },
-            { phone: '691234567', name: 'Bob', rating: 4.7, totalRides: 15 },
-            { phone: '692345678', name: 'Charlie', rating: 5.0, totalRides: 8 },
-            { phone: '693456789', name: 'Diana', rating: 4.8, totalRides: 32 }
+            { phone: '690123456', name: 'Alice', rating: 4.9, total_rides: 24 },
+            { phone: '691234567', name: 'Bob', rating: 4.7, total_rides: 15 },
+            { phone: '692345678', name: 'Charlie', rating: 5.0, total_rides: 8 },
+            { phone: '693456789', name: 'Diana', rating: 4.8, total_rides: 32 }
         ]);
         console.log(`✅ ${users.length} utilisateurs créés`);
         
@@ -23,46 +23,46 @@ async function seedDatabase() {
             {
                 name: 'Jean Kamga',
                 phone: '694567890',
-                vehicleType: 'taxi',
-                vehiclePlate: 'LT123AB',
-                vehicleColor: 'Jaune',
+                vehicle_type: 'taxi',
+                vehicle_plate: 'LT123AB',
+                vehicle_color: 'Jaune',
                 rating: 4.8,
-                totalRides: 245,
+                total_rides: 245,
                 location: { lat: 4.0511, lng: 9.7679 },
-                isAvailable: true
+                is_available: true
             },
             {
                 name: 'Marie Ndi',
                 phone: '695678901',
-                vehicleType: 'moto',
-                vehiclePlate: 'RT456CD',
-                vehicleColor: 'Rouge',
+                vehicle_type: 'moto',
+                vehicle_plate: 'RT456CD',
+                vehicle_color: 'Rouge',
                 rating: 4.2,
-                totalRides: 89,
+                total_rides: 89,
                 location: { lat: 4.0421, lng: 9.6989 },
-                isAvailable: true
+                is_available: true
             },
             {
                 name: 'Paul Tamo',
                 phone: '696789012',
-                vehicleType: 'taxi',
-                vehiclePlate: 'LT789EF',
-                vehicleColor: 'Bleu',
+                vehicle_type: 'taxi',
+                vehicle_plate: 'LT789EF',
+                vehicle_color: 'Bleu',
                 rating: 3.9,
-                totalRides: 567,
+                total_rides: 567,
                 location: { lat: 4.0581, lng: 9.6949 },
-                isAvailable: true
+                is_available: true
             },
             {
                 name: 'Sandra Ebosse',
                 phone: '697890123',
-                vehicleType: 'moto',
-                vehiclePlate: 'RT012GH',
-                vehicleColor: 'Verte',
+                vehicle_type: 'moto',
+                vehicle_plate: 'RT012GH',
+                vehicle_color: 'Verte',
                 rating: 4.9,
-                totalRides: 156,
+                total_rides: 156,
                 location: { lat: 4.0456, lng: 9.7123 },
-                isAvailable: true
+                is_available: true
             }
         ]);
         console.log(`✅ ${drivers.length} conducteurs créés`);
@@ -70,10 +70,10 @@ async function seedDatabase() {
         // 3. Création de quelques courses d'exemple
         const rides = await Ride.bulkCreate([
             {
-                userId: users[0].id,
-                driverId: drivers[0].id,
-                startLocation: { address: 'Bonapriso', lat: 4.0511, lng: 9.7679 },
-                endLocation: { address: 'Akwa', lat: 4.0421, lng: 9.6989 },
+                user_id: users[0].id,
+                driver_id: drivers[0].id,
+                start_location: { address: 'Bonapriso', lat: 4.0511, lng: 9.7679 },
+                end_location: { address: 'Akwa', lat: 4.0421, lng: 9.6989 },
                 distance: 5.2,
                 duration: 18,
                 price: 1850,
@@ -83,14 +83,14 @@ async function seedDatabase() {
                     { label: 'Réduction périphérie', value: -400 }
                 ],
                 status: 'completed',
-                startedAt: new Date(Date.now() - 3600000),
-                completedAt: new Date(Date.now() - 1800000)
+                started_at: new Date(Date.now() - 3600000),
+                completed_at: new Date(Date.now() - 1800000)
             },
             {
-                userId: users[1].id,
-                driverId: drivers[1].id,
-                startLocation: { address: 'Centre', lat: 4.0581, lng: 9.6949 },
-                endLocation: { address: 'Bonapriso', lat: 4.0511, lng: 9.7679 },
+                user_id: users[1].id,
+                driver_id: drivers[1].id,
+                start_location: { address: 'Centre', lat: 4.0581, lng: 9.6949 },
+                end_location: { address: 'Bonapriso', lat: 4.0511, lng: 9.7679 },
                 distance: 3.8,
                 duration: 12,
                 price: 1140,
@@ -98,8 +98,8 @@ async function seedDatabase() {
                     { label: 'Prix de base (3.8km × 300F)', value: 1140 }
                 ],
                 status: 'completed',
-                startedAt: new Date(Date.now() - 7200000),
-                completedAt: new Date(Date.now() - 6000000)
+                started_at: new Date(Date.now() - 7200000),
+                completed_at: new Date(Date.now() - 6000000)
             }
         ]);
         console.log(`✅ ${rides.length} courses créées`);
@@ -107,25 +107,25 @@ async function seedDatabase() {
         // 4. Création des notations
         const ratings = await Rating.bulkCreate([
             {
-                rideId: rides[0].id,
-                fromUserId: users[0].id,
-                toDriverId: drivers[0].id,
+                ride_id: rides[0].id,
+                from_user_id: users[0].id,
+                to_driver_id: drivers[0].id,
                 score: 5,
                 comment: 'Très professionnel, voiture propre',
                 type: 'passenger_to_driver'
             },
             {
-                rideId: rides[0].id,
-                fromDriverId: drivers[0].id,
-                toUserId: users[0].id,
+                ride_id: rides[0].id,
+                from_driver_id: drivers[0].id,
+                to_user_id: users[0].id,
                 score: 5,
                 comment: 'Passagère agréable',
                 type: 'driver_to_passenger'
             },
             {
-                rideId: rides[1].id,
-                fromUserId: users[1].id,
-                toDriverId: drivers[1].id,
+                ride_id: rides[1].id,
+                from_user_id: users[1].id,
+                to_driver_id: drivers[1].id,
                 score: 4,
                 comment: 'Course rapide, mais casque mal ajusté',
                 type: 'passenger_to_driver'

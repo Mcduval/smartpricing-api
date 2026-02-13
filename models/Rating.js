@@ -10,7 +10,6 @@ const Rating = sequelize.define('Rating', {
     ride_id: {
         type: DataTypes.UUID,
         allowNull: false,
-        unique: true,
         references: { model: 'rides', key: 'id' }
     },
     from_user_id: {

@@ -19,8 +19,11 @@ if (process.env.DATABASE_URL) {
             underscored: true,
             createdAt: 'created_at',
             updatedAt: 'updated_at'
-        }
+        }        
     });
+
+        console.log(process.env.DATABASE_URL);
+
 } else {
     // DÉVELOPPEMENT (localhost)
     sequelize = new Sequelize(
@@ -46,6 +49,9 @@ if (process.env.DATABASE_URL) {
             }
         }
     );
+
+        console.log(process.env.DB_HOST);
+
 }
 
 module.exports = sequelize;

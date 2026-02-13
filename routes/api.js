@@ -6,6 +6,7 @@ const pricingController = require('../controllers/pricingController');
 const driverController = require('../controllers/driverController');
 const rideController = require('../controllers/rideController');
 const ratingController = require('../controllers/ratingController');
+const userController = require('../controllers/userController');
 
 // ==================== PRICING ====================
 router.post('/estimate', pricingController.estimatePrice);
@@ -28,6 +29,9 @@ router.get('/rides/driver/:driverId', rideController.getDriverRides);
 router.post('/ratings', ratingController.createRating);
 router.get('/ratings/driver/:driverId', ratingController.getDriverRatings);
 router.get('/ratings/user/:userId', ratingController.getUserRatings);
+
+// ==================== USERS ====================
+router.get('/users', userController.getAllUsers);
 
 // ==================== TEST ====================
 router.get('/test', (req, res) => {

@@ -25,7 +25,7 @@ Driver.hasMany(Rating, { as: 'given_ratings', foreignKey: 'from_driver_id' });
 Rating.belongsTo(Driver, { as: 'rater_driver', foreignKey: 'from_driver_id' });
 
 // --- Relations Ride ---
-Ride.hasOne(Rating, { as: 'rating', foreignKey: 'ride_id' });
+Ride.hasMany(Rating, { as: 'ratings', foreignKey: 'ride_id' });
 Rating.belongsTo(Ride, { as: 'ride', foreignKey: 'ride_id' });
 
 module.exports = {
