@@ -19,9 +19,12 @@ router.patch('/drivers/:id/availability', driverController.toggleAvailability);
 
 // ==================== RIDES ====================
 router.post('/rides', rideController.createRide);
+router.get('/rides/pending', rideController.getPendingRides); // Doit être avant /rides/:id
+router.get('/rides/:id', rideController.getRideById);
 router.patch('/rides/:id/accept', rideController.acceptRide);
 router.patch('/rides/:id/start', rideController.startRide);
 router.patch('/rides/:id/complete', rideController.completeRide);
+router.patch('/rides/:id/cancel', rideController.cancelRide);
 router.get('/rides/user/:userId', rideController.getUserRides);
 router.get('/rides/driver/:driverId', rideController.getDriverRides);
 

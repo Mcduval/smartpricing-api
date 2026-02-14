@@ -11,7 +11,7 @@ async function seedDatabase() {
         
         // 1. Création des utilisateurs
         const users = await User.bulkCreate([
-            { phone: '690123456', name: 'Alice', rating: 4.9, total_rides: 24 },
+            // { phone: '690123456', name: 'Alice', rating: 4.9, total_rides: 24 },
             { phone: '691234567', name: 'Bob', rating: 4.7, total_rides: 15 },
             { phone: '692345678', name: 'Charlie', rating: 5.0, total_rides: 8 },
             { phone: '693456789', name: 'Diana', rating: 4.8, total_rides: 32 }
@@ -20,17 +20,17 @@ async function seedDatabase() {
         
         // 2. Création des conducteurs
         const drivers = await Driver.bulkCreate([
-            {
-                name: 'Jean Kamga',
-                phone: '694567890',
-                vehicle_type: 'taxi',
-                vehicle_plate: 'LT123AB',
-                vehicle_color: 'Jaune',
-                rating: 4.8,
-                total_rides: 245,
-                location: { lat: 4.0511, lng: 9.7679 },
-                is_available: true
-            },
+            // {
+            //     name: 'Jean Kamga',
+            //     phone: '694567890',
+            //     vehicle_type: 'taxi',
+            //     vehicle_plate: 'LT123AB',
+            //     vehicle_color: 'Jaune',
+            //     rating: 4.8,
+            //     total_rides: 245,
+            //     location: { lat: 4.0511, lng: 9.7679 },
+            //     is_available: true
+            // },
             {
                 name: 'Marie Ndi',
                 phone: '695678901',
