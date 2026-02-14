@@ -11,6 +11,10 @@ const Driver = sequelize.define('Driver', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     phone: {
         type: DataTypes.STRING,
         allowNull: false,

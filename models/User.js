@@ -19,6 +19,10 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: true
     },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     rating: {
         type: DataTypes.FLOAT,
         defaultValue: 5.0,

@@ -72,6 +72,27 @@ exports.acceptRide = async (req, res, next) => {
     }
 };
 
+exports.rejectRide = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        
+        const ride = await Ride.findByPk(id);
+        
+        if (!ride) {
+            return res.status(404).json({ error: 'Course non trouvée' });
+        }
+        
+        ride.status = 'cancelled';
+        ride.cancelled_at = new Date();
+        await ride.save();
+        
+        res.json({ success: true, ride });
+        
+    } catch (error) {
+        next(error);
+    }
+};
+
 exports.startRide = async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -215,8 +236,15 @@ exports.getRideById = async (req, res, next) => {
 
 exports.getPendingRides = async (req, res, next) => {
     try {
+        const { driverId } = req.query;
+        const whereClause = { status: 'pending' };
+        
+        if (driverId) {
+            whereClause.driver_id = driverId;
+        }
+
         const rides = await Ride.findAll({
-            where: { status: 'pending' },
+            where: whereClause,
             include: [{
                 model: User,
                 as: 'passenger',
